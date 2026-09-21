@@ -1400,7 +1400,7 @@ func TestParseToAzureDurationString(t *testing.T) {
 		input    *monitoringv1.Duration
 		expected *string
 	}{
-		{nil, ptr.To("PT1M")}, // Azure Monitor requires a duration for every alert
+		{nil, nil},
 		{(*monitoringv1.Duration)(ptr.To("30s")), ptr.To("PT1M")}, // too short, gets default
 		{(*monitoringv1.Duration)(ptr.To("5m")), ptr.To("PT5M")},
 		{(*monitoringv1.Duration)(ptr.To("1h")), ptr.To("PT1H")},

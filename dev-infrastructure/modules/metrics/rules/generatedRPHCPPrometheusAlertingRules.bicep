@@ -19,12 +19,12 @@ resource rpUserjourneyKasAvailabilityMonitorRules 'Microsoft.AlertsManagement/pr
       {
         actions: [
           for g in actionGroups: {
-          actionGroupId: g
-          actionProperties: {
-            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-            'IcM.CorrelationId': '#$.annotations.correlationId#'
+            actionGroupId: g
+            actionProperties: {
+              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+              'IcM.CorrelationId': '#$.annotations.correlationId#'
+            }
           }
-        }
         ]
         alert: 'userJourneyKubeApiserverAvailability1h5m'
         enabled: true
@@ -56,12 +56,12 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-          actionGroupId: g
-          actionProperties: {
-            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-            'IcM.CorrelationId': '#$.annotations.correlationId#'
+            actionGroupId: g
+            actionProperties: {
+              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+              'IcM.CorrelationId': '#$.annotations.correlationId#'
+            }
           }
-        }
         ]
         alert: 'userJourneyKubeApiserverAvailability6h30m'
         enabled: true
@@ -93,12 +93,12 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-          actionGroupId: g
-          actionProperties: {
-            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-            'IcM.CorrelationId': '#$.annotations.correlationId#'
+            actionGroupId: g
+            actionProperties: {
+              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+              'IcM.CorrelationId': '#$.annotations.correlationId#'
+            }
           }
-        }
         ]
         alert: 'userJourneyKubeApiserverAvailability3d6h'
         enabled: true
@@ -142,12 +142,12 @@ resource hcpDeletionStuckRules 'Microsoft.AlertsManagement/prometheusRuleGroups@
     rules: [
       {
         actions: [for g in actionGroups: {
-          actionGroupId: g
-          actionProperties: {
-            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-            'IcM.CorrelationId': '#$.annotations.correlationId#'
-          }
-        }]
+            actionGroupId: g
+            actionProperties: {
+              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+              'IcM.CorrelationId': '#$.annotations.correlationId#'
+            }
+          }]
         alert: 'HCPDeletionStuck'
         enabled: true
         labels: {
@@ -178,7 +178,7 @@ an orphaned resource that needs manual intervention.
           title: '[HCPDeletionStuck] {{ $labels.cluster }} / {{ $labels.namespace }} deletion stuck > 24h resource_id:{{ $labels.resource_id }} since:{{ $labels.deletion_timestamp }}'
         }
         expression: 'hostedClusterAPI_deleting'
-        for: 'PT1D'
+        for: 'PT24H'
         severity: severityCeiling > 0 ? max(3, severityCeiling) : 3
       }
     ]
@@ -197,12 +197,12 @@ resource hcpEtcdGrpcLatencyAlerts 'Microsoft.AlertsManagement/prometheusRuleGrou
       {
         actions: [
           for g in actionGroups: {
-          actionGroupId: g
-          actionProperties: {
-            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-            'IcM.CorrelationId': '#$.annotations.correlationId#'
+            actionGroupId: g
+            actionProperties: {
+              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+              'IcM.CorrelationId': '#$.annotations.correlationId#'
+            }
           }
-        }
         ]
         alert: 'userJourneyEtcdReadLatencyP991h5m'
         enabled: true
@@ -234,12 +234,12 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-          actionGroupId: g
-          actionProperties: {
-            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-            'IcM.CorrelationId': '#$.annotations.correlationId#'
+            actionGroupId: g
+            actionProperties: {
+              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+              'IcM.CorrelationId': '#$.annotations.correlationId#'
+            }
           }
-        }
         ]
         alert: 'userJourneyEtcdReadLatencyP996h30m'
         enabled: true
@@ -271,12 +271,12 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-          actionGroupId: g
-          actionProperties: {
-            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-            'IcM.CorrelationId': '#$.annotations.correlationId#'
+            actionGroupId: g
+            actionProperties: {
+              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+              'IcM.CorrelationId': '#$.annotations.correlationId#'
+            }
           }
-        }
         ]
         alert: 'userJourneyEtcdReadLatencyP993d6h'
         enabled: true
@@ -308,12 +308,12 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-          actionGroupId: g
-          actionProperties: {
-            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-            'IcM.CorrelationId': '#$.annotations.correlationId#'
+            actionGroupId: g
+            actionProperties: {
+              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+              'IcM.CorrelationId': '#$.annotations.correlationId#'
+            }
           }
-        }
         ]
         alert: 'userJourneyEtcdWriteLatencyP991h5m'
         enabled: true
@@ -345,12 +345,12 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-          actionGroupId: g
-          actionProperties: {
-            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-            'IcM.CorrelationId': '#$.annotations.correlationId#'
+            actionGroupId: g
+            actionProperties: {
+              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+              'IcM.CorrelationId': '#$.annotations.correlationId#'
+            }
           }
-        }
         ]
         alert: 'userJourneyEtcdWriteLatencyP996h30m'
         enabled: true
@@ -382,12 +382,12 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-          actionGroupId: g
-          actionProperties: {
-            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-            'IcM.CorrelationId': '#$.annotations.correlationId#'
+            actionGroupId: g
+            actionProperties: {
+              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+              'IcM.CorrelationId': '#$.annotations.correlationId#'
+            }
           }
-        }
         ]
         alert: 'userJourneyEtcdWriteLatencyP993d6h'
         enabled: true

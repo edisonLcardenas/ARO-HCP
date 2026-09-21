@@ -843,9 +843,7 @@ func bicepName(name *string) string {
 
 func parseToAzureDurationString(d *monitoringv1.Duration) *string {
 	if d == nil {
-		// Azure Monitor rejects a null/omitted `for` with:
-		// "Not a valid ISO 8601 duration format".
-		return ptr.To("PT1M")
+		return nil
 	}
 
 	parsedDuration, err := model.ParseDuration(string(*d))

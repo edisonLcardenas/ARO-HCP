@@ -141,15 +141,13 @@ resource hcpEtcdGrpcLatencyAlerts 'Microsoft.AlertsManagement/prometheusRuleGrou
     interval: 'PT1M'
     rules: [
       {
-        actions: [
-          for g in actionGroups: {
+        actions: [for g in actionGroups: {
             actionGroupId: g
             actionProperties: {
               'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
               'IcM.CorrelationId': '#$.annotations.correlationId#'
             }
-          }
-        ]
+        }]
         alert: 'userJourneyEtcdReadLatencyP991h5m'
         enabled: true
         labels: {

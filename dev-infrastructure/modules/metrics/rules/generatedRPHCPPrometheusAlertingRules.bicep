@@ -19,11 +19,11 @@ resource rpUserjourneyKasAvailabilityMonitorRules 'Microsoft.AlertsManagement/pr
       {
         actions: [
           for g in actionGroups: {
-            actionGroupId: g
-            actionProperties: {
-              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-              'IcM.CorrelationId': '#$.annotations.correlationId#'
-            }
+          actionGroupId: g
+          actionProperties: {
+            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+            'IcM.CorrelationId': '#$.annotations.correlationId#'
+          }
           }
         ]
         alert: 'userJourneyKubeApiserverAvailability1h5m'
@@ -56,11 +56,11 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-            actionGroupId: g
-            actionProperties: {
-              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-              'IcM.CorrelationId': '#$.annotations.correlationId#'
-            }
+          actionGroupId: g
+          actionProperties: {
+            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+            'IcM.CorrelationId': '#$.annotations.correlationId#'
+          }
           }
         ]
         alert: 'userJourneyKubeApiserverAvailability6h30m'
@@ -93,11 +93,11 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-            actionGroupId: g
-            actionProperties: {
-              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-              'IcM.CorrelationId': '#$.annotations.correlationId#'
-            }
+          actionGroupId: g
+          actionProperties: {
+            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+            'IcM.CorrelationId': '#$.annotations.correlationId#'
+          }
           }
         ]
         alert: 'userJourneyKubeApiserverAvailability3d6h'
@@ -142,68 +142,12 @@ resource hcpDeletionStuckRules 'Microsoft.AlertsManagement/prometheusRuleGroups@
     rules: [
       {
         actions: [for g in actionGroups: {
-            actionGroupId: g
-            actionProperties: {
-              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-              'IcM.CorrelationId': '#$.annotations.correlationId#'
-            }
-          }]
-        alert: 'HCPDeletionStuck'
-        enabled: true
-        labels: {
-          component: 'slo'
-          severity: '3'
-          slo: 'hcp-lifecycle'
-        }
-        annotations: {
-          correlationId: 'HCPDeletionStuck/{{ $labels.cluster }}/{{ $labels.namespace }}'
-          description: '''Resource ID: {{ $labels.resource_id }}
-Management Cluster: {{ $labels.cluster }}
-Namespace: {{ $labels.namespace }}
-Deletion Timestamp: {{ $labels.deletion_timestamp }}
-The HostedCluster has been in a deleting state for over 24 hours.
-This may indicate a stuck finalizer, missing Azure resources, or
-an orphaned resource that needs manual intervention.
-'''
-          info: '''Resource ID: {{ $labels.resource_id }}
-Management Cluster: {{ $labels.cluster }}
-Namespace: {{ $labels.namespace }}
-Deletion Timestamp: {{ $labels.deletion_timestamp }}
-The HostedCluster has been in a deleting state for over 24 hours.
-This may indicate a stuck finalizer, missing Azure resources, or
-an orphaned resource that needs manual intervention.
-'''
-          runbook_url: 'https://aka.ms/arohcp-runbook-hcpdeletionstuck'
-          summary: '[HCPDeletionStuck] {{ $labels.cluster }} / {{ $labels.namespace }} deletion stuck > 24h resource_id:{{ $labels.resource_id }} since:{{ $labels.deletion_timestamp }}'
-          title: '[HCPDeletionStuck] {{ $labels.cluster }} / {{ $labels.namespace }} deletion stuck > 24h resource_id:{{ $labels.resource_id }} since:{{ $labels.deletion_timestamp }}'
-        }
-        expression: 'hostedClusterAPI_deleting'
-        for: 'PT24H'
-        severity: severityCeiling > 0 ? max(3, severityCeiling) : 3
-      }
-    ]
-    scopes: [
-      azureMonitoring
-    ]
-  }
-}
-
-resource hcpEtcdGrpcLatencyAlerts 'Microsoft.AlertsManagement/prometheusRuleGroups@2023-03-01' = {
-  name: 'hcp-etcd-grpc-latency-alerts'
-  location: location
-  properties: {
-    interval: 'PT1M'
-    rules: [
-      {
-        actions: [
-          for g in actionGroups: {
-            actionGroupId: g
-            actionProperties: {
-              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-              'IcM.CorrelationId': '#$.annotations.correlationId#'
-            }
+          actionGroupId: g
+          actionProperties: {
+            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+            'IcM.CorrelationId': '#$.annotations.correlationId#'
           }
-        ]
+        }]
         alert: 'userJourneyEtcdReadLatencyP991h5m'
         enabled: true
         labels: {
@@ -234,11 +178,11 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-            actionGroupId: g
-            actionProperties: {
-              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-              'IcM.CorrelationId': '#$.annotations.correlationId#'
-            }
+          actionGroupId: g
+          actionProperties: {
+            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+            'IcM.CorrelationId': '#$.annotations.correlationId#'
+          }
           }
         ]
         alert: 'userJourneyEtcdReadLatencyP996h30m'
@@ -271,11 +215,11 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-            actionGroupId: g
-            actionProperties: {
-              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-              'IcM.CorrelationId': '#$.annotations.correlationId#'
-            }
+          actionGroupId: g
+          actionProperties: {
+            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+            'IcM.CorrelationId': '#$.annotations.correlationId#'
+          }
           }
         ]
         alert: 'userJourneyEtcdReadLatencyP993d6h'
@@ -308,11 +252,11 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-            actionGroupId: g
-            actionProperties: {
-              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-              'IcM.CorrelationId': '#$.annotations.correlationId#'
-            }
+          actionGroupId: g
+          actionProperties: {
+            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+            'IcM.CorrelationId': '#$.annotations.correlationId#'
+          }
           }
         ]
         alert: 'userJourneyEtcdWriteLatencyP991h5m'
@@ -345,11 +289,11 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-            actionGroupId: g
-            actionProperties: {
-              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-              'IcM.CorrelationId': '#$.annotations.correlationId#'
-            }
+          actionGroupId: g
+          actionProperties: {
+            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+            'IcM.CorrelationId': '#$.annotations.correlationId#'
+          }
           }
         ]
         alert: 'userJourneyEtcdWriteLatencyP996h30m'
@@ -382,11 +326,11 @@ Namespace: {{ $labels.namespace }}
       {
         actions: [
           for g in actionGroups: {
-            actionGroupId: g
-            actionProperties: {
-              'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
-              'IcM.CorrelationId': '#$.annotations.correlationId#'
-            }
+          actionGroupId: g
+          actionProperties: {
+            'IcM.Title': '#$.labels.cluster#: #$.annotations.title#'
+            'IcM.CorrelationId': '#$.annotations.correlationId#'
+          }
           }
         ]
         alert: 'userJourneyEtcdWriteLatencyP993d6h'

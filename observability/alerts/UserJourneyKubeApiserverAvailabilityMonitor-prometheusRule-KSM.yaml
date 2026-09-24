@@ -9,10 +9,8 @@ spec:
     labels:
       component: slo
     rules:
-    # Burn-rate alerts are naturally suppressed for deleting clusters because the
-    # SLI recording rules (sli_sum_*, sli_count_*) exclude clusters with an active
-    # deletion via `unless on (...) hostedClusterAPI_deleting`. Without SLI data
-    # for those clusters, the burn-rate expressions produce no results. See: ARO-29170
+    # Deleting clusters do not page: SLI recording rules exclude them via
+    # `unless on (...) hostedClusterAPI_deleting`.
     - alert: userJourneyKubeApiserverAvailability1h5m
       expr: |
         (
@@ -104,31 +102,3 @@ spec:
           Namespace: {{ $labels.namespace }}
         runbook_url: https://aka.ms/arohcp-runbook-ujkasavailable
         correlationId: "userJourneyKubeApiserverAvailability/{{ $labels.cluster }}/{{ $labels.namespace }}"
-  - name: hcp-deletion-stuck-rules
-    labels:
-      component: slo
-    rules:
-    # HCPDeletionStuck fires when a HostedCluster has been in a deleting state for
-    # more than 24 hours. This surfaces genuinely stuck deletions (e.g. orphaned
-    # finalizers, missing Azure resources) that would otherwise be silently suppressed
-    # from the KAS burn-rate alerts. Routes to HCP RP / ClusterService team.
-    # See: ARO-29170
-    - alert: HCPDeletionStuck
-      expr: |
-        hostedClusterAPI_deleting
-      for: 24h
-      labels:
-        severity: "3"
-        slo: hcp-lifecycle
-      annotations:
-        summary: "[HCPDeletionStuck] {{ $labels.cluster }} / {{ $labels.namespace }} deletion stuck > 24h resource_id:{{ $labels.resource_id }} since:{{ $labels.deletion_timestamp }}"
-        description: |
-          Resource ID: {{ $labels.resource_id }}
-          Management Cluster: {{ $labels.cluster }}
-          Namespace: {{ $labels.namespace }}
-          Deletion Timestamp: {{ $labels.deletion_timestamp }}
-          The HostedCluster has been in a deleting state for over 24 hours.
-          This may indicate a stuck finalizer, missing Azure resources, or
-          an orphaned resource that needs manual intervention.
-        runbook_url: https://aka.ms/arohcp-runbook-hcpdeletionstuck
-        correlationId: "HCPDeletionStuck/{{ $labels.cluster }}/{{ $labels.namespace }}"
